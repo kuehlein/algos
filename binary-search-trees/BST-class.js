@@ -92,3 +92,23 @@ class BST {
 		return current.value
 	}
 }
+
+
+function inOrderTraverse(tree, array) {
+  if (tree !== null) {
+    inOrderTraverse(tree.left, array)
+    array.push(tree.value)
+    inOrderTraverse(tree.right, array)
+  }
+  return array
+}
+
+const test = new BST(10).insert(5).insert(15).insert(5).insert(2).insert(14).insert(22)
+
+console.log(test.left.value) // 5
+console.log(test.right.right.value) // 22
+console.log(test.right.left.value) // 14
+console.log(test.left.right.value) // 5
+console.log(test.left.left.value) // 2
+console.log(test.left.left.left) // null
+console.log(test.right.left.right) // null
