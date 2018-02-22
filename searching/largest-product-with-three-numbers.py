@@ -5,7 +5,9 @@ def largestProduct(array):
     largest = [None, None, None]
     smallest = [None, None]
     for num in array:
-        checkPositiveNumber(largest, num) if num > 0 else checkNegativeNumber(smallest, num)
+        checkPositiveNumber(largest, num)
+        if num <= 0:
+            checkNegativeNumber(smallest, num)
     return findLargerProduct(largest, smallest)
 
 def checkPositiveNumber(array, num):
