@@ -6,7 +6,7 @@ function levenshteinDistance(str1, str2) {
   const big = str1.length >= str2.length ? str1 : str2
   const evenEdits = []
   const oddEdits = new Array(small.length + 1)
-  for (let j = 0;j < small.length + 1; j++) {
+  for (let j = 0; j < small.length + 1; j++) {
     evenEdits.push(j)
   }
   for (let i = 1; i < big.length + 1; i++) {
