@@ -12,17 +12,17 @@ const permutationsHelper = (i, array, permutations) => {
     permutations.push(array.slice());
   } else {
     for (let j = i; j < array.length; j++) {
-      swap(i, j, array);
+      if (i !== j) swap(i, j, array);
       permutationsHelper(i + 1, array, permutations);
-      swap(i, j, array);
+      if (i !== j) swap(i, j, array);
     }
   }
 };
 
 const swap = (i, j, array) => {
-  const temp = array[i];
-  array[i] = array[j];
-  array[j] = temp;
+  array[i] ^= array[j];
+  array[j] ^= array[i];
+  array[i] ^= array[j];
 };
 
 console.log(permutations([1, 2, 3]));
