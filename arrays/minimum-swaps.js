@@ -5,13 +5,19 @@ const minimumSwaps = arr => {
   let minSwaps = 0;
   for (let i = 0; i < arr.length - 1; i++) {
     if (i < arr[i] - 1) {
-      swap(arr, i, Math.min(arr.length - 1, arr[i] - 1));
+      swap(arr, i, arr[i] - 1);
       minSwaps++;
       i--;
     }
   }
   return minSwaps;
 };
+
+function swap(arr, i, j) {
+  arr[i] ^= arr[j];
+  arr[j] ^= arr[i];
+  arr[i] ^= arr[j];
+}
 
 const swap = (arr, i, j) => {
   arr[i] ^= arr[j];
