@@ -1,6 +1,6 @@
-// Time: O(n)
+// Time: O(n + m)
 // Space: O(1)
-// where n is the length of the input array
+// where n is the length of the input array and m is the amount of swaps necessary
 const minimumSwaps = arr => {
   let minSwaps = 0;
   for (let i = 0; i < arr.length - 1; i++) {
