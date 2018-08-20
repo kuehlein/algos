@@ -15,12 +15,12 @@ const makeAnagram = (str1, str2) => {
     for (let j = 0; j < str2Arr.length; j++) {
       if (str1[i] === str2Arr[j]) {
         swapAndDelete(str2Arr, j);
-        pair++;
+        pair += 2;
         break;
       }
     }
   }
-  return count - pair * 2;
+  return count - pair;
 };
 
 const swapAndDelete = (arr, j) => {
