@@ -43,7 +43,7 @@ function mergeSortHelperOptimalSpace(
   auxiliaryArray
 ) {
   if (startIdx === endIdx) return;
-  const middleIdx = Math.floor((startIdx + endIdx) / 2);
+  const middleIdx = (startIdx + endIdx) >> 1;
   mergeSortHelperOptimalSpace(auxiliaryArray, startIdx, middleIdx, mainArray);
   mergeSortHelperOptimalSpace(auxiliaryArray, middleIdx + 1, endIdx, mainArray);
   doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray);
