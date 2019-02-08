@@ -6,7 +6,7 @@
  */
 
 // where n is the number of nodes on the binary tree input...
-// time: O(n * log(n)) - to traverse each node on the tree
+// time: O(n) - to traverse each node on the tree
 // space: O(n) - for building the linked list and the space on the callstack during traversal
 
 /**
