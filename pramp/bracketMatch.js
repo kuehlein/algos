@@ -23,7 +23,7 @@
  *
  *  - [time limit] 5000ms
  *
- *  - [input] string text
+ *  - [input] string `text`
  *    - 1 ≤ text.length ≤ 5000
  *
  *  - [output] integer
