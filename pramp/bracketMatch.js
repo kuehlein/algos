@@ -29,7 +29,7 @@
  *  - [output] integer
  */
 
-
+// NAIEVE APPROACH
 // time: O(n)
 // space: O(n)
 
@@ -37,7 +37,7 @@
  * @param {string} str - input string containing only ")" and "(" characters
  * @returns {number} - number of brackets needed to balance input string
  */
-const bracketMatch = str => {
+const bracketMatch1 = str => {
   const stack = []
 
   for (let i = 0; i < str.length; i++) {
@@ -50,7 +50,22 @@ const bracketMatch = str => {
   return stack.length
 }
 
+// OPTIMAL APPROACH
+// time: O(n)
+// space: O(1)
+
+const bracketMatch2 = str => {
+  let unmatchedOpen = 0
+  let unmatchedClose = 0
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "(") unmatchedOpen++
+    if (str[i] === ")") unmatchedOpen ? unmatchedOpen-- : unmatchedClose++
+  }
+  return unmatchedOpen + unmatchedClose
+}
+
 // Examples:
-console.log(bracketMatch("(()")) // 1
-console.log(bracketMatch("(())")) // 0
-console.log(bracketMatch("())(")) // 2
+console.log(bracketMatch2("(()")) // 1
+console.log(bracketMatch2("(())")) // 0
+console.log(bracketMatch2("())(")) // 2
