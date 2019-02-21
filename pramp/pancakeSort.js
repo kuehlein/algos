@@ -38,8 +38,20 @@
  */
 
 
-// time: O(n^3)
+// time: O(n^2)
 // space: O(1)
+
+/**
+ * Time Complexity: let N be the length of the input array. There are N-1
+ * iterations, in each we place one element in its place. Every iteration takes
+ * 2 flips to move every member in the array to its place, and each takes O(N) at
+ * most. In addition, every iteration we find the maximal element, which is also
+ * done in O(N). There are N-1 iterations that take O(N) time thus in total the
+ * algorithm takes O(N^2) time.
+ *
+ * Space Complexity: the algorithm doesn’t initiate more than a few auxiliary
+ * variables, thus it is entirely in place and uses only O(1) space.
+ */
 
 /**
  * Using a shrinking window (from right to left) find the highest value in the window
@@ -109,9 +121,28 @@ const swap = (arr, i, j) => {
 // Example:
 
 // input:
-const arr = [1, 5, 4, 3, 2]
+const arr = [2, 3, 1, 5, 4]
 
 console.log(pancakeSort(arr))
 
 // output:
 // [1, 2, 3, 4, 5]
+
+
+// Running Example:
+
+/**
+ * -----------------------------------------------------------------------------
+ * |      Array      | i |  Current prefix  |  Max elem in prefix  |  Next flip   |
+ * -----------------------------------------------------------------------------
+ * | [2, 3, 1, 5, 4] | 4 | [2, 3, 1, 5, 4] |         5           | flip(arr, 3) |
+ * | [5, 1, 3, 2, 4] | 4 | [5, 1, 3, 2, 4] |         5           | flip(arr, 4) |
+ * | [4, 2, 3, 1, 5] | 3 | [4, 2, 3, 1]    |         4           | flip(arr, 0) |
+ * | [4, 2, 3, 1, 5] | 3 | [4, 2, 3, 1]    |         4           | flip(arr, 3) |
+ * | [1, 3, 2, 4, 5] | 2 | [1, 3, 2]       |         3           | flip(arr, 1) |
+ * | [3, 1, 2, 4, 5] | 2 | [3, 1, 2]       |         3           | flip(arr, 2) |
+ * | [2, 1, 3, 4, 5] | 1 | [2, 1]          |         2           | flip(arr, 0) |
+ * | [2, 1, 3, 4, 5] | 1 | [2, 1]          |         2           | flip(arr, 1) |
+ * | [1, 2, 3, 4, 5] | - |         -       |         -           |      -      |
+ * -----------------------------------------------------------------------------
+ */
