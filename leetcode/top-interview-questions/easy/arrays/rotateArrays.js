@@ -51,17 +51,29 @@ const reverse = (arr, i, j) => {
 // Examples:
 
 const arr1 = [1, 2, 3, 4, 5, 6, 7];
-console.log(rotate(arr1, 3)); // [5,6,7,1,2,3,4]
+rotate(arr1, 3);
+console.log(arr1); // [5,6,7,1,2,3,4]
 // initial:    [1,2,3,4,5,6,7]
 // rotation 1: [1,2,3,4,7,6,5]
 // rotation 1: [4,3,2,1,7,6,5]
 // rotation 1: [5,6,7,1,2,3,4] <= final
 
 const arr2 = [-1, -100, 3, 99];
-console.log(rotate(arr2, 2)); // [3,99,-1,-100]
+rotate(arr2, 2);
+console.log(arr2); // [3,99,-1,-100]
 
 const arr3 = [1, 2];
-console.log(rotate(arr3, 0)); // [1, 2] --- no shift
-console.log(rotate(arr3, 1)); // [2, 1] --- 1 shift
-console.log(rotate(arr3, 2)); // [1, 2] --- no shift
-console.log(rotate(arr3, 3)); // [2, 1] --- 1 shift
+rotate(arr3, 0);
+console.log(arr3); // [1, 2] --- no shift
+
+const arr4 = [1,2]
+rotate(arr4, 1);
+console.log(arr4); // [2, 1] --- 1 shift
+
+const arr5 = [1,2];
+rotate(arr5, 2);
+console.log(arr5); // [1, 2] --- no shift
+
+const arr6 = [1,2]
+rotate(arr6, 3);
+console.log(arr6); // [2, 1] --- 1 shift
