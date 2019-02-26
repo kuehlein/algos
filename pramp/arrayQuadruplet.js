@@ -48,7 +48,7 @@
  */
 const findArrayQuadruplet = (arr, s) => {
   for (let i = 0; i < arr.length; i++) {
-    for (let j = arr.length - 1; j > i + 1; j--) {
+    for (let j = arr.length - 1; j > i + 2; j--) {
       let left = i + 1
       let right = j - 1
       while (left < right) {
