@@ -13,6 +13,18 @@
  */
 
 /**
+ *           20
+ *         /    \
+ *        9      25
+ *      /   \
+ *     5     12
+ *         /    \
+ *       11      14
+ *
+ * In this diagram, the inorder successor of 9 is 11 and the inorder successor of 14 is 20.
+ */
+
+/**
  * * *Constraints* *
  *
  *  - [time limit] 5000ms
