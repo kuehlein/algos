@@ -16,15 +16,15 @@
 from typing import List
 
 def reverseString(s: List[str]) -> None:
-  '''
-  Using a left and right pointer, swap all of the values in the input list `s`.
-  '''
-  left = 0
-  right = len(s) - 1
-  while left < right:
-    s[left], s[right] = s[right], s[left]
-    left += 1
-    right -= 1
+    '''
+    Using a left and right pointer, swap all of the values in the input list `s`.
+    '''
+    left = 0
+    right = len(s) - 1
+    while left < right:
+        s[left], s[right] = s[right], s[left]
+        left += 1
+        right -= 1
 
 
 # Examples:

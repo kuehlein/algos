@@ -13,21 +13,21 @@
 # space: O(1)
 
 def reverse(x: int) -> int:
-  '''
-  Build a reversed version of input int `x`, by multiplying `reversed` by a factor
-  of `10`, modding `x` for its "1's" value and adding that onto `reversed`.
-  '''
-  reversed = 0
-  factor = 10
-  sign = 1 if x > 0 else -1
-  x *= sign
-  while x != 0:
-    reversed *= factor
-    reversed += x % 10
-    x //= 10
-    if reversed > 2**31-1 or reversed < -2**31:
-      return 0
-  return reversed * sign
+    '''
+    Build a reversed version of input int `x`, by multiplying `reversed` by a factor
+    of `10`, modding `x` for its "1's" value and adding that onto `reversed`.
+    '''
+    reversed = 0
+    factor = 10
+    sign = 1 if x > 0 else -1
+    x *= sign
+    while x != 0:
+        reversed *= factor
+        reversed += x % 10
+        x //= 10
+        if reversed > 2**31-1 or reversed < -2**31:
+            return 0
+    return reversed * sign
 
 
 # Examples:
