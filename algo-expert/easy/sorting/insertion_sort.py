@@ -17,9 +17,9 @@ def insertionSort(array: List[int]) -> List[int]:
     '''
     for i in range(1, len(array)):
         j = i
-    while j > 0 and array[j] > array[j - 1]:
-        swap(array, j)
-        j -= 1
+        while j > 0 and array[j] < array[j - 1]:
+            swap(array, j)
+            j -= 1
     return array
 
 def swap(arr: List[int], i: int) -> None:
@@ -29,3 +29,8 @@ def swap(arr: List[int], i: int) -> None:
     arr[i] ^= arr[i - 1]
     arr[i - 1] ^= arr[i]
     arr[i] ^= arr[i - 1]
+
+# Example:
+
+arr = [8, 5, 2, 9, 5, 6, 3]
+print(insertionSort(arr) == [2, 3, 5, 5, 6, 8, 9])
