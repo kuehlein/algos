@@ -35,7 +35,7 @@
  * @returns {boolean} - whether or not input matrix is a toeplitz matrix
  */
 const isToeplitz = arr => {
-	for (let i = 1; i < arr.length; i++) {
+  for (let i = 1; i < arr.length; i++) {
     for (let j = 1; j < arr[i].length; j++) {
       if (arr[i][j] !== arr[i - 1][j - 1]) return false
     }
