@@ -21,7 +21,7 @@ def number_of_ways_to_make_change(n: int, denoms: List[int]) -> int:
     all_ways[0] = 1
 
     for denom in denoms:
-        for i in range(n + 1):
+        for i in range(1, n + 1):
             if denom <= i:
                 all_ways[i] += all_ways[i - denom]
 
