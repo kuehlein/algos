@@ -13,6 +13,9 @@
 # space: O(1)
 
 def climb_stairs(n: int) -> int:
+    '''
+    Track the number of possibilities for the last two stairs, add the sum, and shift the values left. Continue this until `n` loops have run. The return value is the last calculated sum.
+    '''
     next_two = [1, 1]
 
     for i in range(2, n + 1):
