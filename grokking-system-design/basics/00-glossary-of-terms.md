@@ -55,10 +55,15 @@
 
 ---
 
-### Serviceability or Manageability
+### Serviceability/Manageability
 >`Serviceability` or `manageability` is the simplicity and speed with which a system can be repaired or maintained; if the time to fix a failed system increases, the availability will decrease.
   - Factors that contribute to a system's serviceability or manageability are:
       * The ease of diagnosing and understanding problems when they occur
       * The ease of making updates or modifications
       * How simple the system is to operate (i.e., does it routinely operate without failure or exceptions?)
   - Early detection of faults can decrease system downtime, thus increasing `availability`
+
+---
+
+### Load Balancer (LB)
+>`Load Balancers` help to spread traffic across a cluster of servers to improve responsiveness and availability of applications, websites or databases. `Load Balancers` also keep track of the status of all the resources while distributing requests. If a server is not available to take new requests or it is not responding or has an elevated error rate, the LB will stop sending traffic to such a server. Typically a load balancer sits between the client and the server accepting incoming network and application traffic and distributing the traffic accross multiple backend servers using various algorithms. By balancing application requests across multiple servers, a load balancer reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness.
