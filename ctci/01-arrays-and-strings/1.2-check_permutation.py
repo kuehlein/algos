@@ -30,5 +30,4 @@ print(check_permutation(str2a, str2b) == False)
 
 str3a = 'zaaaaaaaasaaajaaiiiaaahaoaaaaaaaaiagaaraaaaaiaaaaaraaaaaaafaaaaaaaaaaab'
 str3b = 'baaaaaaafaaaaiiiiiaaarraaaaaaajaaaaaaaaaaagaaaaaaaoasaaaaahaaaaaaaaaaaz'
-
 print(check_permutation(str3a, str3b) == True)
