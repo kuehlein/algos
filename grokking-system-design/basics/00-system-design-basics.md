@@ -1,8 +1,9 @@
----
+
 <p style="font-size: 3em, text-align: center">SYSTEM DESIGN BASICS</p>
+
 ---
 
-###Whenever we are designing a large system, we need to consider a few things:
+### Whenever we are designing a large system, we need to consider a few things:
 
 1. What are the different architectural pieces that can be used?
 2. How do these pieces work with each other?
