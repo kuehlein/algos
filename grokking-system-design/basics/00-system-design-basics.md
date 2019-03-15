@@ -1,5 +1,5 @@
 
-<p style="font-size: 3em, text-align: center">SYSTEM DESIGN BASICS</p>
+# System Design Basics
 
 ---
 
