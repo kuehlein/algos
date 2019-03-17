@@ -67,3 +67,68 @@
 
 ### Load Balancer (LB)
 >`Load Balancers` help to spread traffic across a cluster of servers to improve responsiveness and availability of applications, websites or databases. `Load Balancers` also keep track of the status of all the resources while distributing requests. If a server is not available to take new requests or it is not responding or has an elevated error rate, the LB will stop sending traffic to such a server. Typically a load balancer sits between the client and the server accepting incoming network and application traffic and distributing the traffic accross multiple backend servers using various algorithms. By balancing application requests across multiple servers, a load balancer reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness.
+
+---
+
+### Cache
+>A cache is a hardware or software component that stores data so that future requests for that data can be served faster; the data stored in a cache might be the result of an earlier computation or a copy of data stored elsewhere.
+  - Caching lets you make better use of resources that are already on hand
+  - Uses `locality of reference principle`: recently requested data is likely to be requested again.
+  - They are used in almost every layer of computing:
+      * hardware
+      * operating systems
+      * web browsers
+      * web applications
+  - Usually near frontend - returns data quickly without touching downstream levels
+
+---
+
+### Application Server Cache
+>
+
+
+Placing a cache directly on a request layer node enables the local storage of response data. Each time a request is made to the service, the node will quickly return local cached data if it exists. If it is not in the cache, the requesting node will query the data from the disk. The cache on one request layer node could also be located both in memory (which is very fast) and on the node's local disk (faster than going to network storage).
+
+What happens when you expand this to many nodes? If the request layer is expanded to multiple nodes, it's still quite possible to have each node host its own cache. However, if your load balancer randomly distributes requests across the nodes, the same request will go to different nodes, thus increasing cache misses. Two choices for overcoming this hurdle are global caches and distributed caches.
+
+---
+
+### Content Distribution Network (CDN)
+>`CDN`s are a kind of `cache` that comes into play for sites serving large amounts of static media. Typically, the client will query a `CDN` for a piece of static media, the `CDN` will return it if it is present, if not, it will query a backend server for the data, cache it locally and return it to the client.
+
+---
+
+### Cache Invalidation
+>The process of ensuring that the data located in the cache is up to date with the data in the database. If a cache's data is out of date, inconsistent behavior can occur in the application.
+
+---
+
+### Write-Through Cache
+>A form of `cache invalidation` where data is written into the cacahe and the corresponding database at the same time. Since the data is being stored in the cache, it allows for fast retrieval, and since it is also being stored in the database, ensures complete data consistency.
+  - This scheme ensures that nothing will get lost during a crash, power failure, or other system disruptions
+  - Since every write operation must be done twice, there is a higher latency cost for this scheme
+
+---
+
+### Write-Around Cache
+>A form of `cache invalidation` where data is written directly to permanent storage, bypassing the cache.
+  - This can reduce the cache being flooded by write operations that will not subsequently be re-read
+    - Latency is also improved over a `write-though cache`
+  - Read requests for recently written data will create a "cache miss" which will increase the latency in this scenario.
+
+---
+
+### Write-Back Cache
+>A form of `cache invalidation` where data is written to the cache alone and completion is immediately confirmed to the client. The write to the permanent storage is done after specified intervals or under certain conditions.
+  - This results in lower latency and high throughput for write-intensive applications
+  - There is a risk of data loss during a crash or other adverse event
+
+---
+
+### Cache Eviction Policies
+  1. **First In First Out (FIFO):** The cache evicts the first block accessed first without any regard to how often or how many times it was accessed before.
+  2. **Last In First Out (LIFO):** The cache evicts the block accessed most recently first without any regard to how often or how many times it was accessed before.
+  3. **Least Recently Used (LRU):** Discards the least recently used items first.
+  4. **Most Recently Used (MRU):** Discards, in contrast to LRU, the most recently used items first.
+  5. **Least Frequently Used (LFU):** Counts how often an item is needed. Those that are used least often are discarded first.
+  6. **Random Replacement (RR):** Randomly selects a candidate item and discards it to make space when necessary.
