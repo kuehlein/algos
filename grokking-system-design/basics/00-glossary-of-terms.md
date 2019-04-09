@@ -132,3 +132,77 @@ What happens when you expand this to many nodes? If the request layer is expande
   4. **Most Recently Used (MRU):** Discards, in contrast to LRU, the most recently used items first.
   5. **Least Frequently Used (LFU):** Counts how often an item is needed. Those that are used least often are discarded first.
   6. **Random Replacement (RR):** Randomly selects a candidate item and discards it to make space when necessary.
+
+---
+
+### Sharding/Data Partitioning
+>A technique to break up a big database into many smaller parts. It is the process of splitting up a DB/table across multiple machines to improve the `manageability`, `performance`, `availability` and `load balancing` of an application.
+  - After a certain point, it is cheaper and more feasible to scale horizontally by adding more machines than it is to grow vertically.
+
+---
+
+### Horizontal Partitioning
+>A database partitioned by splitting a single table across different tables/machines; e.g storing ZIP codes less than 10000 on one table on one machine, and ZIP codes greater than 10000 on another. This is also called `ranged based sharding`.
+  - If the range values are not chosen carefully, servers will be unbalanced.
+    - e.g. one ZIP code might be very active while another might not be.
+
+---
+
+### Vertical Partitioning
+>A database partitioned by splitting different concerns across different machines; e.g. storing users on one server, photos on another, etc.
+  - `Vertical partitioning` is straightforward to implement and has a low impact on the application, but the main problem with this approach is partitioning even further after growth.
+
+---
+
+### Directory Based Partitioning
+>A database partitioned by means of a loosely coupled approach of `horizontal partitioning` and `vertical partitioning` that uses a service that knows your scheme as an intermediary for lookups.
+  - So, to find out where a particular data entity resides, we query the directory server that holds the mapping between each tuple key to its DB server.
+  - This loosely coupled approach means we can perform tasks like adding servers to the DB pool or changing our partitioning scheme without having an impact on the application.
+
+---
+
+### Key/Hash-Based Partitioning
+>This scheme utilizes a hash function to some key attributes of the entity being stored that yields the partition number.
+  - For example, if we have 100 DB servers and our ID is a numeric value that gets incremented by one each time a new record is inserted. In this example, the hash function could be ‘ID % 100’, which will give us the server number where we can store/read that record.
+    - This approach should ensure a uniform allocation of data among servers.
+    - The fundamental problem with this approach is that it effectively fixes the total number of DB servers, since adding new servers means changing the hash function which would require redistribution of data and downtime for the service.
+      - A workaround for this problem is to use `Consistent Hashing`.
+
+---
+
+### List Partitioning
+>This scheme utilizes a list of values assigned to each partition. Whenever a value is queried, we can see which partition contains our key.
+  - For example, we can decide all users living in Iceland, Norway, Sweden, Finland, or Denmark will be stored in a partition for the Nordic countries.
+
+---
+
+### Round-Robin Partitioning
+>A very simple partitioning strategy that ensures uniform data distribution using modular arithmetic.
+  - For "n" partitions, the row with an id of "i" might go into partition "i mod n".
+
+---
+
+### Composite Partitioning
+>A partitioning strategy that uses other types of partitioning strategies in combination; e.g. first applying `list partitioning`, then `hash based partitioning`.
+  - `Consistent hashing` could be considered a composite of `hash partitioning` and `list partitioning` where the hash reduces the key space to a size that can be listed.
+
+---
+
+### Denormalization
+>In computing, denormalization is the process of trying to improve the read performance of a database, at the expense of losing some write performance, by adding redundant copies of data or by grouping data. It is often motivated by performance or scalability in relational database software needing to carry out very large numbers of read operations. `Denormalization` should not be confused with `Unnormalized form`. Databases/tables must first be `normalized` to efficiently `denormalize` them.
+  - Issues like data inconsistency become an issue by `denormalizing`.
+
+---
+
+### Referential Integrity
+>A property of data stating that all of its references are valid. In the context of relational databases, it requires that if a value of one attribute (column) of a relation (table) references a value of another attribute (either in the same or a different relation), then the referenced value must exist.
+  - Most of `RDBMS` do not support foreign keys constraints across databases on different database servers, which means that applications that require `referential integrity` on sharded databases often have to enforce it in application code.
+  - Trying to enforce data integrity constraints such as foreign keys in a sharded database can be extremely difficult. Often in such cases, applications have to run regular SQL jobs to clean up dangling references.
+
+---
+
+### Rebalancing
+>The process of creating more DB shards or rebalancing existing shards. This may need to occur if the data distribution is not uniform (`ranged based sharding` or `list partitioning` improperly balanced), or there is a heavy load on any single shard (too many requests).
+  - This means the partitioning scheme changed and all existing data is moved to new locations.
+    - Doing this without incurring downtime is extremely difficult.
+    - Using a scheme like `directory based partitioning` does make rebalancing a more palatable experience at the cost of increasing the complexity of the system and creating a new single point of failure (i.e. the lookup service/database).
